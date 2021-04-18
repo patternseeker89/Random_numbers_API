@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 require_once '../vendor/autoload.php';
 
-use Pecee\SimpleRouter\SimpleRouter;
-use RandomNumbersAPI\Controllers\ApiController;
+//use Pecee\SimpleRouter\SimpleRouter;
+//use RandomNumbersAPI\Controllers\ApiController;
+use RandomNumbersAPI\Router;
 
 //SimpleRouter::get('/', function() {
 //    return 'Hello world';
@@ -17,11 +18,11 @@ use RandomNumbersAPI\Controllers\ApiController;
 //
 //echo ApiController::class;
 
-SimpleRouter::post('/api/auth', [ApiController::class, 'auth']);
-
-SimpleRouter::get('/api/generate', [ApiController::class, 'generate']);
-
-SimpleRouter::get('/api/retrieve/{id?}', [ApiController::class, 'retrieve']);
+//SimpleRouter::post('/api/auth', [ApiController::class, 'auth']);
+//
+//SimpleRouter::get('/api/generate', [ApiController::class, 'generate']);
+//
+//SimpleRouter::get('/api/retrieve/{id?}', [ApiController::class, 'retrieve']);
 
 //SimpleRouter::controller('/q1', ApiController::class, ['as' => 'picture']);
 
@@ -32,4 +33,5 @@ SimpleRouter::get('/api/retrieve/{id?}', [ApiController::class, 'retrieve']);
 //});
 
 // Start the routing
-SimpleRouter::start();
+//SimpleRouter::start();
+Router::start();

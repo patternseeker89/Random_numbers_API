@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ecb44dff6213350cd19de1ebc184ae36",
+    "content-hash": "ccc1f5d1a049800701d9ed193bd2d011",
     "packages": [
         {
             "name": "composer/package-versions-deprecated",
@@ -1058,6 +1058,52 @@
                 "source": "https://github.com/doctrine/persistence/tree/2.2.x"
             },
             "time": "2021-04-13T10:29:47+00:00"
+        },
+        {
+            "name": "gabordemooij/redbean",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/gabordemooij/redbean.git",
+                "reference": "45332d4b595695ee747965bc9bcdb5b5b1f76633"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/gabordemooij/redbean/zipball/45332d4b595695ee747965bc9bcdb5b5b1f76633",
+                "reference": "45332d4b595695ee747965bc9bcdb5b5b1f76633",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.4"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "RedBeanPHP\\": "RedBeanPHP"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Gabor de Mooij",
+                    "email": "gabor@redbeanphp.com",
+                    "homepage": "https://redbeanphp.com"
+                }
+            ],
+            "description": "RedBeanPHP ORM",
+            "homepage": "https://redbeanphp.com/",
+            "keywords": [
+                "orm"
+            ],
+            "support": {
+                "issues": "https://github.com/gabordemooij/redbean/issues",
+                "source": "https://github.com/gabordemooij/redbean/tree/master"
+            },
+            "time": "2021-03-28T10:24:50+00:00"
         },
         {
             "name": "pecee/simple-router",
@@ -2347,7 +2393,8 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "pecee/simple-router": 20,
-        "doctrine/orm": 20
+        "doctrine/orm": 20,
+        "gabordemooij/redbean": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

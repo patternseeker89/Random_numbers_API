@@ -10,7 +10,8 @@
     "minimum-stability": "dev",
     "require": {
         "pecee/simple-router": "dev-master",
-        "doctrine/orm": "3.0.x-dev"
+        "doctrine/orm": "3.0.x-dev",
+        "gabordemooij/redbean": "dev-master"
     },
     "autoload": {
         "psr-4": { "RandomNumbersAPI\\": "src"}
