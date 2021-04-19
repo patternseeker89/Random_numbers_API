@@ -22,13 +22,16 @@ class UsersMysqlRepository implements UsersRepositoryInterface {
 
     public function getUserByLogin(string $login): ?OODBBean
     {
-        $user = $this->orm::findOne('users', ' login = ? ', [$login]);
-
-        return $user;
+        return $this->orm::findOne('users', ' login = ? ', [$login]);
     }
     
     public function saveUser(OODBBean $user): void {
         $this->orm::store($user);
+    }
+    
+    public function getUserByToken(string $token): ?OODBBean
+    {
+        return $this->orm::findOne('users', ' token = ? ', [$token]);
     }
 
 }
