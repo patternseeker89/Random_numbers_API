@@ -4,6 +4,7 @@ namespace RandomNumbersAPI\Components\Users;
 
 use RandomNumbersAPI\Components\Users\UsersRepositoryInterface;
 use \RedBeanPHP\R as ORM;
+use RedBeanPHP\OODBBean;
 
 /**
  * Description of UsersMysqlRepository
@@ -19,11 +20,15 @@ class UsersMysqlRepository implements UsersRepositoryInterface {
         $this->orm = $orm;
     }
 
-    public function getToken(string $login): ?string
+    public function getUserByLogin(string $login): ?OODBBean
     {
-        $user = ORM::findOne('users', ' login = ? ', [$login]);
+        $user = $this->orm::findOne('users', ' login = ? ', [$login]);
 
-        return $user->token;
+        return $user;
+    }
+    
+    public function saveUser(OODBBean $user): void {
+        $this->orm::store($user);
     }
 
 }

@@ -5,8 +5,8 @@ namespace RandomNumbersAPI\Controllers;
 use RandomNumbersAPI\Components\Users\UsersComponent;
 use RandomNumbersAPI\Components\Users\UsersMysqlRepository;
 use RandomNumbersAPI\OrmAdapter;
-use Pecee\Http\Request;
-use Pecee\SimpleRouter\SimpleRouter;
+use RandomNumbersAPI\Router;
+use RandomNumbersAPI\Helpers\HeadersHandler;
 
 /**
  * Description of ApiController
@@ -18,6 +18,8 @@ class ApiController {
     private $inputHandler;
     
     private $usersComponent;
+    
+    private $headersHandler;
 
     public function __construct()
     {
@@ -25,24 +27,30 @@ class ApiController {
         $repository = new UsersMysqlRepository($orm);
         $this->usersComponent = new UsersComponent($repository);
         
-        $this->inputHandler = SimpleRouter::request()->getInputHandler();
+        $this->inputHandler = Router::request()->getInputHandler();
+        $this->headersHandler = new HeadersHandler();
         
     }
 
     public function auth(): void
     {
         $login = $this->inputHandler->post('login');
-        $auth = $this->usersComponent->auth($login->value);  
-        var_dump($login, $login->value, $auth);
+        $password = $this->inputHandler->post('pass');
+        
+        $auth = $this->usersComponent->auth($login->value, $password->value);
+        
+        //var_dump($login, $login->value, $auth);
     }
 
     public function generate(): void
     {
+        $bearerToken = $this->headersHandler->getBearerToken();
         echo 11;
     }
 
     public function retrieve(): void
     {
+        
         $id = $this->inputHandler->get('id');
         var_dump($id->value);
         echo $id;
