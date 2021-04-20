@@ -21,15 +21,17 @@ class NumbersMysqlRepository implements NumbersRepositoryInterface {
 
     public function save(string $id, int $value, int $userId): void
     {
-        $number = $this->orm::dispense('numbers');
-        $number->id = $id;
-        $number->value = $value;
-        $number->user_id = $userId;
+        $this->orm::exec("insert into numbers(id, value, user_id) values (?, ?, ?)", [$id, $value, $userId]);
+    }
+    
+    public function retrieve(string $id): ?int
+    {
+        $number = $this->orm::findOne('numbers', ' id = ? ', [$id]);
+        if (!is_null($number)) {
+            return $number->value;
+        }
         
-       
-        
-        $id1 = $this->orm::store($number);
-         var_dump($id1);die();
+        return null;
     }
     
 }

@@ -29,12 +29,13 @@ class ApiController {
     public function __construct()
     {
         $orm = (new OrmAdapter())->get();
+        $randomValuesHelper = new RandomValues();
         
         $repository = new UsersMysqlRepository($orm);
-        $this->usersComponent = new UsersComponent($repository, new RandomValues());
+        $this->usersComponent = new UsersComponent($repository, $randomValuesHelper);
         
         $repository = new NumbersMysqlRepository($orm);
-        $this->numbersComponent = new NumbersComponent($repository, new RandomValues());
+        $this->numbersComponent = new NumbersComponent($repository, $randomValuesHelper);
         
         $this->inputHandler = Router::request()->getInputHandler();
         $this->headersHandler = new HeadersHandler();
@@ -57,7 +58,7 @@ class ApiController {
     public function generate(): void
     {
         $bearerToken = $this->headersHandler->getBearerToken();
-        
+
         $user = $this->usersComponent->getUserByToken($bearerToken);
         if (is_null($user)) {
             header('HTTP/1.0 403 Forbidden');
@@ -77,9 +78,28 @@ class ApiController {
 
     public function retrieve(): void
     {
-        
+        $bearerToken = $this->headersHandler->getBearerToken();
         $id = $this->inputHandler->get('id');
-        var_dump($id->value);
-        echo $id;
+
+        $user = $this->usersComponent->getUserByToken($bearerToken);
+        if (is_null($user)) {
+            header('HTTP/1.0 403 Forbidden');
+            exit();
+        }
+
+        $isTokenExpired = $this->usersComponent->isTokenExpired($user->expired_at);
+        if ($isTokenExpired) {
+            header('HTTP/1.0 401 Unauthorized');
+            exit();
+        }
+        
+        $value = $this->numbersComponent->retrieve($id);
+        
+        if (is_null($value)) {
+            header('HTTP/1.0 404 Not Found');
+            exit();
+        }
+
+        echo json_encode(['value' => $value]);
     }
 }

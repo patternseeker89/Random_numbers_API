@@ -36,6 +36,11 @@ class NumbersComponent {
         return ['id' => $id, 'value' => $value];
     }
     
+    public function retrieve(string $id): ?int
+    {
+        return $this->repository->retrieve($id);
+    }
+    
     private function generateRandomNumber(): int
     {
         return random_int(self::MIN_NUMBER, self::MAX_NUMBER);
