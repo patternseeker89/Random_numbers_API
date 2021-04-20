@@ -5,7 +5,7 @@ namespace RandomNumbersAPI\Components\Users;
 use \RedBeanPHP\OODBBean;
 
 /**
- * Description of UsersRepositoryInterface
+ * Interface for UsersComponent repositories
  *
  * @author porfirovskiy
  */

@@ -5,7 +5,7 @@ namespace RandomNumbersAPI\Components\Numbers;
 use RandomNumbersAPI\Helpers\RandomValues;
 
 /**
- * Description of NumbersComponent
+ * Component for number entity
  *
  * @author porfirovskiy
  */
@@ -35,7 +35,7 @@ class NumbersComponent {
 
         return ['id' => $id, 'value' => $value];
     }
-    
+
     public function retrieve(string $id): ?int
     {
         return $this->repository->retrieve($id);

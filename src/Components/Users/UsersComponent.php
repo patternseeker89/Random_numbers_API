@@ -6,7 +6,7 @@ use RandomNumbersAPI\Helpers\RandomValues;
 use RedBeanPHP\OODBBean;
 
 /**
- * Description of UsersComponent
+ * Component for user entity
  *
  * @author porfirovskiy
  */
@@ -64,5 +64,19 @@ class UsersComponent {
         }
         
         return true;
+    }
+    
+    public function getAccess(?OODBBean $user): void
+    {
+        if (is_null($user)) {
+            header('HTTP/1.0 403 Forbidden');
+            exit();
+        }
+
+        $isTokenExpired = $this->isTokenExpired($user->expired_at);
+        if ($isTokenExpired) {
+            header('HTTP/1.0 401 Unauthorized');
+            exit();
+        }
     }
 }

@@ -12,7 +12,7 @@ use RandomNumbersAPI\Helpers\HeadersHandler;
 use RandomNumbersAPI\Helpers\RandomValues;
 
 /**
- * Description of ApiController
+ * Controller class for api http methods
  *
  * @author porfirovskiy
  */
@@ -60,16 +60,7 @@ class ApiController {
         $bearerToken = $this->headersHandler->getBearerToken();
 
         $user = $this->usersComponent->getUserByToken($bearerToken);
-        if (is_null($user)) {
-            header('HTTP/1.0 403 Forbidden');
-            exit();
-        }
-
-        $isTokenExpired = $this->usersComponent->isTokenExpired($user->expired_at);
-        if ($isTokenExpired) {
-            header('HTTP/1.0 401 Unauthorized');
-            exit();
-        }
+        $this->usersComponent->getAccess($user);
         
         $result = $this->numbersComponent->generate($user->id);
         
@@ -82,16 +73,7 @@ class ApiController {
         $id = $this->inputHandler->get('id');
 
         $user = $this->usersComponent->getUserByToken($bearerToken);
-        if (is_null($user)) {
-            header('HTTP/1.0 403 Forbidden');
-            exit();
-        }
-
-        $isTokenExpired = $this->usersComponent->isTokenExpired($user->expired_at);
-        if ($isTokenExpired) {
-            header('HTTP/1.0 401 Unauthorized');
-            exit();
-        }
+        $this->usersComponent->getAccess($user);
         
         $value = $this->numbersComponent->retrieve($id);
         

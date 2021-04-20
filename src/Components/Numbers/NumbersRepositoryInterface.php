@@ -3,7 +3,7 @@
 namespace RandomNumbersAPI\Components\Numbers;
 
 /**
- * Description of UsersRepositoryInterface
+ * Interface for NumbersComponent repositories
  *
  * @author porfirovskiy
  */

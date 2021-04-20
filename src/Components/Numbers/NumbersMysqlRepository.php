@@ -6,7 +6,7 @@ use RandomNumbersAPI\Components\Numbers\NumbersRepositoryInterface;
 use \RedBeanPHP\R as ORM;
 
 /**
- * Description of NumbersMysqlRepository
+ * Db repository for NumbersComponent
  *
  * @author porfirovskiy
  */

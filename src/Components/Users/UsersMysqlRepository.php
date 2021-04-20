@@ -7,7 +7,7 @@ use \RedBeanPHP\R as ORM;
 use RedBeanPHP\OODBBean;
 
 /**
- * Description of UsersMysqlRepository
+ * Db repository for UsersComponent
  *
  * @author porfirovskiy
  */

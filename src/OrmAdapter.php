@@ -5,7 +5,7 @@ namespace RandomNumbersAPI;
 use \RedBeanPHP\R AS RedBeanOrm;
 
 /**
- * 
+ * Class prepare and return ready orm object
  */
 class OrmAdapter {
 

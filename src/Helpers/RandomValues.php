@@ -3,7 +3,7 @@
 namespace RandomNumbersAPI\Helpers;
 
 /**
- * Description of RandomValues
+ * Class create some random values
  *
  * @author porfirovskiy
  */

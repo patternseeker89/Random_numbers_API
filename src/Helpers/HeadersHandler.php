@@ -3,7 +3,7 @@
 namespace RandomNumbersAPI\Helpers;
 
 /**
- * Description of HeadersHandler
+ * Handle http headers
  *
  * @author porfirovskiy
  */
