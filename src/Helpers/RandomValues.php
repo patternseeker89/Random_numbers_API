@@ -18,4 +18,9 @@ class RandomValues {
         return md5($randomString);
     }
     
+    public function generateRandomNumber(int $min, int $max): int
+    {
+        return random_int($min, $max);
+    }
+    
 }

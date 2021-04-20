@@ -29,7 +29,7 @@ class NumbersComponent {
     public function generate(int $userId): array
     {
         $id = $this->randomValuesHelper->generateRandomString();
-        $value = $this->generateRandomNumber();
+        $value = $this->randomValuesHelper->generateRandomNumber(self::MIN_NUMBER, self::MAX_NUMBER);
 
         $this->repository->save($id, $value, $userId);
 
@@ -39,10 +39,5 @@ class NumbersComponent {
     public function retrieve(string $id): ?int
     {
         return $this->repository->retrieve($id);
-    }
-    
-    private function generateRandomNumber(): int
-    {
-        return random_int(self::MIN_NUMBER, self::MAX_NUMBER);
     }
 }

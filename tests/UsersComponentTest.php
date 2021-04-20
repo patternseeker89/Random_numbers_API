@@ -1,11 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace RandomNumbersAPI\Tests;
 
 use PHPUnit\Framework\TestCase;
 use RandomNumbersAPI\Components\Users\UsersComponent;
 use RandomNumbersAPI\Components\Users\UsersRepositoryInterface;
 use RandomNumbersAPI\Helpers\RandomValues;
+use RedBeanPHP\OODBBean;
+use \RedBeanPHP\R as ORM;
 
 class UsersComponentTest extends TestCase
 {
@@ -25,21 +29,26 @@ class UsersComponentTest extends TestCase
 
     protected function tearDown(): void
     {
-        unset($this->usersComponent);
+        unset(
+            $this->usersComponent,
+            $this->repository,
+            $this->randomValuesHelper
+        );
     }
     
     /**
      * @dataProvider isTokenExpiredDataProvider
+     * 
      * @param string $tokenDate
      * @param type $expectedResult
      */
-    public function testIsTokenExpired(string $tokenDate, $expectedResult)
+    public function testIsTokenExpired(string $tokenDate, bool $expectedResult): void
     {
         $result = $this->usersComponent->isTokenExpired($tokenDate);
         $this->assertSame($expectedResult, $result);
     }
         
-    public function isTokenExpiredDataProvider()
+    public function isTokenExpiredDataProvider(): array
     {
         $dateTime = new \DateTime('now');
         $dateTime->add(new \DateInterval('PT60S'));
